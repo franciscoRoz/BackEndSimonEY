@@ -5,17 +5,13 @@ const credentials = {
   client_email: config.GOOGLE_CLIENT_EMAIL,
   private_key: config.GOOGLE_PRIVATE_KEY,
 };
-console.log("<----------------------------Credentials------------------------>");
-console.log(credentials);
-console.log("<----------------------------Credentials------------------------>");
+
 
 const sessionClient = new dialogflow.SessionsClient({
   projectId: config.GOOGLE_PROJECT_ID,
   credentials,
 });
-console.log("<----------------------------Session Cliente------------------------>");
-console.log(sessionClient);
-console.log("<----------------------------Session Cliente------------------------>");
+
 
 
 /**
@@ -23,7 +19,9 @@ console.log("<----------------------------Session Cliente-----------------------
  * @param {string} projectId The project to be used
  */
 async function sendToDialogFlow(msg, session, source, params) {
-  
+  console.log("<------------------------------------------session-------------------------------------->");
+  console.log(session);
+  console.log("<------------------------------------------session-------------------------------------->");
   let textToDialogFlow = msg;
   try {
     const sessionPath = sessionClient.sessionPath(
@@ -45,10 +43,7 @@ async function sendToDialogFlow(msg, session, source, params) {
         },
       },
     };
-    console.log("<----------------------------Request------------------------>");
-    console.log(request);
-    console.log("<----------------------------Request------------------------>");
-    
+   
 
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
@@ -69,9 +64,7 @@ async function sendToDialogFlow(msg, session, source, params) {
       });
     }
     result.fulfillmentMessages = defaultResponses;
-    console.log("<----------------------------result------------------------>");
-    console.log(result);
-    console.log("<----------------------------result------------------------>");
+   
     return result;
     // console.log("se enviara el resultado: ", result);
   } catch (e) {
