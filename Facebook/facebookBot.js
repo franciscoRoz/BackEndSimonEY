@@ -113,6 +113,9 @@ async function receivedMessage(event) {
   if (messageText) {
     //send message to dialogflow
     console.log("MENSAJE DEL USUARIO: ", messageText);
+    console.log("<-----------------------------------Sender ID--------------------------------------->");
+    console.log(senderId);
+    console.log("<-----------------------------------Sender ID--------------------------------------->");
     await sendToDialogFlow(senderId, messageText);
   } else if (messageAttachments) {
     handleMessageAttachments(messageAttachments, senderId);
