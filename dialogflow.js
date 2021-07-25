@@ -23,6 +23,9 @@ console.log("<----------------------------Session Cliente-----------------------
  * @param {string} projectId The project to be used
  */
 async function sendToDialogFlow(msg, session, source, params) {
+  console.log("<---------------------------Parametros--------------------------------------------->");
+  console.log(`Mensaje:${msg}, session:${session},source:${source},params: ${params}`);
+  console.log("<---------------------------Parametros--------------------------------------------->");
   let textToDialogFlow = msg;
   try {
     const sessionPath = sessionClient.sessionPath(
