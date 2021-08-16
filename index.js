@@ -7,12 +7,11 @@ router.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-router.post("/webhook", express.json(), function (req, res) {
-
-  [msg,gpn,source]= req.body;
+router.post("/webhook", express.json(), async function (req, res) {
+  let {msg,gpn,source}= req.body[0];
 
  console.log(msg,gpn,source);
-  let resDF = sendToDialogFlow(msg,source,gpn,"");
+  let resDF = await sendToDialogFlow(msg,gpn,source,"");
 
   console.log(resDF);
   
