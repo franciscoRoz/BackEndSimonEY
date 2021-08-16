@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
 const { sendToDialogFlow } = require("./DialogFlow/DialogFlow");
 
 app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.post("/webhook", express.json(), function (req, res) {
+router.post("/webhook", express.json(), function (req, res) {
 
   [msg,gpn,source]= req.body;
 
@@ -17,6 +18,6 @@ app.post("/webhook", express.json(), function (req, res) {
 });
 
 let port = 3000;
-app.listen(port, () => {
+router.listen(port, () => {
   console.log("Estamos ejecutando el servidor en el puerto " + port);
 });
