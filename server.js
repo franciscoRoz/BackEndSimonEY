@@ -17,7 +17,7 @@ app.use(
     limit: "20mb",
   })
 );
-console.log("paso por aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+
 app.use("/messenger", require("./index"));
 
 app.get("/", (req, res) => {
