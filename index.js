@@ -12,7 +12,7 @@ router.post("/webhook", express.json(), function (req, res) {
   [msg,gpn,source]= req.body;
 
  
-  let resDF = sendToDialogFlow(msg,source,gpn,undefined);
+  let resDF = sendToDialogFlow(msg,source,gpn,"");
 
   console.log(resDF);
   
