@@ -17,7 +17,7 @@ app.get("/", function (req, res) {
 
   //   res.send(resDF).status(200) 
   // });
-  // app.use("/HandleMsj" ,  require("./DialogFlow/Helpers/Funciones"));
+  app.use("/HandleMsj" ,  require("./DialogFlow/Helpers/Funciones"));
 
 app.listen(port, () => {
   console.log("Estamos ejecutando el servidor en el puerto " + port);

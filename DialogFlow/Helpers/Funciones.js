@@ -1,6 +1,8 @@
 const { sendToDialogFlow } = require("../DialogFlow");
-
-app.post("/Enviarmensaje", express.json(), function (req, res) {
+const express = require("express");
+const router = express.Router();
+const request = require("request");
+router.post("/Enviarmensaje", express.json(), function (req, res) {
 
     [msg,gpn,source]= req.body;
   
@@ -9,3 +11,7 @@ app.post("/Enviarmensaje", express.json(), function (req, res) {
   
     res.send(resDF).status(200) 
   });
+  router.get("/", function (req, res) {
+    res.send("Todo Funcionando en funciones");
+  });
+  
