@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-app.use("/messenger", require("./index"));
+app.use("/messenger", require("./DialogFlow/DialogFlow"));
 
 app.get("/", (req, res) => {
   return res.send("Chatbot Funcionando 🤖🤖🤖");
