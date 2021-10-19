@@ -18,10 +18,10 @@ app.use(
   })
 );
 
-app.use("/handlemsg", require("./DialogFlow/DialogFlow"));
+app.use("/handlemsg", require("./DialogFlow/DialogFlow.js"));
 
 app.get("/", (req, res) => {
-  return res.send("Chatbot Funcionando 🤖🤖🤖");
+  return res.send("Chatbot Funcionando!!");
 });
 
 app.listen(port, () => {
