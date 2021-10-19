@@ -1,24 +1,29 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
 const port = process.env.PORT || 3000;
 
+// for parsing json
+app.use(
+  bodyParser.json({
+    limit: "20mb",
+  })
+);
+// parse application/x-www-form-urlencoded
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+    limit: "20mb",
+  })
+);
 
-app.get("/", function (req, res) {
-  res.send("Todo Funcionando en index");
+app.use("/HandleMsj" ,  require("./DialogFlow/Helpers/Funciones"));
+
+app.get("/", (req, res) => {
+  return res.send("Chatbot Funcionando!!");
 });
 
-  // app.post("/webhookDF", express.json(), function (req, res) {
-
-  //   [msg,gpn,source]= req.body;
-
-
-  //   let resDF = sendToDialogFlow(msg,gpn,source,undefined);
-
-  //   res.send(resDF).status(200) 
-  // });
-  app.use("/HandleMsj" ,  require("./DialogFlow/Helpers/Funciones"));
-
 app.listen(port, () => {
-  console.log("Estamos ejecutando el servidor en el puerto " + port);
+  console.log(`Escuchando peticiones en el puerto ${port}`);
 });

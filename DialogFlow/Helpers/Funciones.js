@@ -2,7 +2,9 @@ const { sendToDialogFlow } = require("../DialogFlow");
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-router.post("/Enviarmensaje", express.json(), function (req, res) {
+const uuid = require("uuid");
+const axios = require("axios");
+router.post("/Enviarmensaje/", function (req, res) {
 
     [msg,gpn,source]= req.body;
   
