@@ -4,16 +4,14 @@ const router = express.Router();
 const request = require("request");
 const uuid = require("uuid");
 const axios = require("axios");
-router.post("/Enviarmensaje/", function (req, res) {
+router.post("/enviarmensaje", express.json(), async function (req, res) {
+  let {msg,gpn,source}= req.body[0];
 
-    [msg,gpn,source]= req.body;
+ console.log(msg,gpn,source);
+  let resDF = await sendToDialogFlow(msg,gpn,source,"");
+
+  console.log(resDF);
   
-  
-    let resDF = sendToDialogFlow(msg,gpn,source,undefined);
-  
-    res.send(resDF).status(200) 
-  });
-  router.get("/", function (req, res) {
-    res.send("Todo Funcionando en funciones");
-  });
+  res.send(resDF).status(200) 
+});
   module.exports = router;
