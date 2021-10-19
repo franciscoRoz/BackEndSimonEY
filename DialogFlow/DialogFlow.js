@@ -11,7 +11,6 @@ const sessionClient = new dialogflow.SessionsClient({
   credentials,
 });
 
-
 /**
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
@@ -40,7 +39,6 @@ async function sendToDialogFlow(msg, session, source, params) {
         },
       },
     };
- 
 
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
@@ -61,7 +59,9 @@ async function sendToDialogFlow(msg, session, source, params) {
       });
     }
     result.fulfillmentMessages = defaultResponses;
-
+    console.log("<----------------------------result------------------------>");
+    console.log(result);
+    console.log("<----------------------------result------------------------>");
     return result;
     // console.log("se enviara el resultado: ", result);
   } catch (e) {
