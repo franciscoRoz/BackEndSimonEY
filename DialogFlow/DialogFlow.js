@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-router.post("/handlemsj", express.json(), async function (req, res) {
+router.post("/recivemsg", express.json(), async function (req, res) {
   let {msg,gpn,source}= req.body[0];
 
  console.log(msg,gpn,source);
