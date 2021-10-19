@@ -1,4 +1,4 @@
-const { sendToDialogFlow } = require("../DialogFlow");
+const { sendToDialogFlow } = require("./Helpers/DialogFlow");
 const express = require("express");
 const router = express.Router();
 const request = require("request");
