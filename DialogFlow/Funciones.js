@@ -16,4 +16,4 @@ router.post("/Enviarmensaje/", function (req, res) {
   router.get("/", function (req, res) {
     res.send("Todo Funcionando en funciones");
   });
-  
+  module.exports = router;
