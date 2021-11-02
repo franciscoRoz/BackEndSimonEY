@@ -7,11 +7,10 @@ const axios = require("axios");
 router.post("/enviarmensaje", express.json(), async function (req, res) {
   let {msg,gpn,source}= req.body[0];
 
- console.log(msg,gpn,source);
   let resDF = await sendToDialogFlow(msg,gpn,source,"");
 
-  console.log(resDF);
-  
-  res.send(resDF).status(200) 
+  const {text} = resDF.fulfillmentMessages[0].text
+
+  res.send(text).status(200) 
 });
   module.exports = router;
