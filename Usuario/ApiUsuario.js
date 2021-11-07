@@ -29,7 +29,7 @@ router.get("/info/:id", express.json(), async function (req, res) {
 
 router.post("/validarusuario", express.json(), async function (req, res) {
   try {
-    
+    console.log("resqery");
     let { email, pass } = req.body[0];
     console.log(email,pass);
     console.log("resqery");
