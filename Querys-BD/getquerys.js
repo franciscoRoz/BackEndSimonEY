@@ -6,7 +6,7 @@ let getcargaregistrada = async(fechaingreso)=>{
     FROM [dbo].[REGISTRO_CARGA_LABORAL] 
     WHERE fechaingreso=${fechaingreso};
     `)
-    console.log( res );
+  
     return res;
 }
 
@@ -16,11 +16,12 @@ let getreembolsoregistrado = async(fechaingreso)=>{
     FROM [dbo].[SOLICITUD_REEMBOLSO] 
     WHERE fechaingreso=${fechaingreso};
     `)
-    console.log( res );
+    
     return res;
 }
+
 module.exports = {
-    getcargaregistrada:getcargaregistrada,
-    getreembolsoregistrado:getreembolsoregistrado,
+    getcargaregistrada,
+    getreembolsoregistrado
   };
   

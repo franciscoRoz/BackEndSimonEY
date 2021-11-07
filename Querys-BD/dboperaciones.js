@@ -2,18 +2,18 @@ var sql = require("mssql");
 
 var config = require('./dboconfig.js')
 
-async function testconnection() {
-  try {
-    //se crea instancia de conexion asincrona con la base de datos registrada en el archivo de dbo config
-    let pool = await sql.connect(config);
-    //en caso de la conexion ser exitosa se notifica con un console log que la conexion fue establecida
-    console.log("conectado a sql");
-  } catch (error) {
-    //el error es tomado por el catch para ser notificado por un console log
-    console.log("error :" + error);
-  }
-}
-async function getdatawithquery(Qery) {
+// async function testconnection() {
+//   try {
+//     //se crea instancia de conexion asincrona con la base de datos registrada en el archivo de dbo config
+//     let pool = await sql.connect(config);
+//     //en caso de la conexion ser exitosa se notifica con un console log que la conexion fue establecida
+//     console.log("conectado a sql");
+//   } catch (error) {
+//     //el error es tomado por el catch para ser notificado por un console log
+//     console.log("error :" + error);
+//   }
+// }
+async function ejecutarqery(Qery) {
   try {
     //se crea instancia de conexion asincrona con la base de datos registrada en el archivo de dbo config
     let pool = await sql.connect(config);
@@ -30,7 +30,7 @@ async function getdatawithquery(Qery) {
 }
   
 module.exports = {
-  testconnection: testconnection,
-  getdatawithquery:getdatawithquery
+  // testconnection: testconnection,
+  ejecutarqery
 };
 

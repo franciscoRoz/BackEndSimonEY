@@ -19,6 +19,7 @@ app.use(
 );
 
 app.use("/handlemsg", require("./DialogFlow/Funciones"));
+app.use("/user", require("./Usuario/ApiUsuario"));
 
 app.get("/", (req, res) => {
   return res.send("Chatbot Funcionando!!");
