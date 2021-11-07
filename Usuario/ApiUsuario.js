@@ -29,16 +29,17 @@ router.get("/info/:id", express.json(), async function (req, res) {
 
 router.post("/validarusuario", express.json(), async function (req, res) {
   try {
-    console.log("entre");
+    
     let { email, pass } = req.body[0];
-
+    console.log(email,pass);
+    console.log("resqery");
     let resqery = await validarusuario(email, pass);
-
+    console.log(resqery);
     enviarinfo(resqery, "Correo o contraseña no válidos", res);
   } catch {
     res
       .send(
-        "Error al consultar la información del usuario validar el correo ingresado"
+        "Error al consultar la información del usuario, validar el correo ingresado"
       )
       .status(400);
   }
