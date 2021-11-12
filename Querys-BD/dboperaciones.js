@@ -1,6 +1,6 @@
 var sql = require("mssql");
 
-var config = require('./dboconfig.js')
+var config = require('../Config/dboconfig.js')
 
 // async function testconnection() {
 //   try {

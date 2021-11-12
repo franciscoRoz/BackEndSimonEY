@@ -1,4 +1,4 @@
-const { ejecutarqery } = require("../dboperaciones.js");
+const { ejecutarqery } = require("../dboperaciones");
 
 let infousuario = async (email) => {
   try {
@@ -38,7 +38,7 @@ let insertarusuario = async (
   idpermiso
 ) => {
   try {
-    let res = await ejecutarqery(`
+    await ejecutarqery(`
       INSERT INTO [dbo].[USUARIO]
       ([gpn]
       ,[email]
@@ -90,12 +90,53 @@ let existeusuario = async (gpn) => {
 
 let actualizarclave = async (gpn, clave, email, nuevaclave) => {
   try {
-    let res = await ejecutarqery(`
+    await ejecutarqery(`
     UPDATE [dbo].[USUARIO]
     SET [clave] = PWDENCRYPT('${nuevaclave}')
     WHERE email='${email}' 
     and gpn='${gpn}' 
     and PWDCOMPARE('${clave}', clave)= 1`);
+  } catch {
+    console.log(
+      `error al ejecutar la actualizacion de clave del usuario: ${email}`
+    );
+  }
+};
+let actualizarestadouser = async (email)=>{
+  try {
+    let res = await ejecutarqery(`
+    UPDATE [dbo].[USUARIO]
+    SET [estado] = 'activo'
+    WHERE email='${email}'`);
+
+    console.log(res);
+  } catch {
+    console.log(
+      `error al ejecutar la actualizacion de clave del usuario: ${email}`
+    );
+  }
+}
+let obtenercorreo = async (gpn)=>{
+  try {
+    let res = await ejecutarqery(`
+        SELECT TOP (1) email 
+        FROM [dbo].[USUARIO]
+        WHERE gpn = '${gpn}'`);
+    return evaluarespuesta(res[0][0]);
+    
+  } catch {
+    console.log(
+      `error al ejecutar la actualizacion de clave del usuario: ${email}`
+    );
+  }
+}
+let actualizarclaverecuperada = async (gpn, email, nuevaclave) => {
+  try {
+    await ejecutarqery(`
+    UPDATE [dbo].[USUARIO]
+    SET [clave] = PWDENCRYPT('${nuevaclave}')
+    WHERE email='${email}' 
+    and gpn='${gpn}'`);
   } catch {
     console.log(
       `error al ejecutar la actualizacion de clave del usuario: ${email}`
@@ -118,4 +159,7 @@ module.exports = {
   insertarusuario,
   existeusuario,
   actualizarclave,
+  actualizarestadouser,
+  obtenercorreo,
+  actualizarclaverecuperada
 };
