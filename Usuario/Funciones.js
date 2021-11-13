@@ -135,7 +135,7 @@ let recuperarclave = async (gpn) => {
     if (correo === "") {
       return {
         codigo: 400,
-        mensaje: "No se ha encontrado al usuario con el gpn indicado",
+        mensaje: "*El GPN ingresado no existe",
       };
     }
 
@@ -150,7 +150,7 @@ let recuperarclave = async (gpn) => {
     if (validacionnuevaclave === "") {
       return {
         codigo: 400,
-        mensaje: "ha ocurrido un error en la recuperacion de password",
+        mensaje: "*ha ocurrido un error en la recuperacion de contraseña",
       };
     }
 
@@ -161,9 +161,10 @@ let recuperarclave = async (gpn) => {
       text: "recuperacion de contraseña",
       html: emailrecuperarclave(email, nuevaclave),
     });
-    return GRR(info.messageId, "Error al enviar el correo de validacion");
+    return GRR(info.messageId, "*Error al enviar el correo de validacion,inténtelo más tarde ");
   } catch (e) {
     console.log(e);
+    return ''
   }
 };
 let activarusuario = async (email) => {
