@@ -1,11 +1,11 @@
 const { ejecutarqery } = require("../dboperaciones");
-let insertarmensaje = async (gpn, msg, fecha) => {
+let insertarmensaje = async (gpn, msg, fecha,usuario) => {
   try {
       console.log( `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje])
       VALUES('${gpn}','${fecha}','${msg}')`);
     await ejecutarqery(
-      `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje])
-        VALUES('${gpn}','${fecha}','${msg}')`
+      `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje],[usuario])
+        VALUES('${gpn}','${fecha}','${msg},${usuario}')`
     );
 
     return "";
@@ -15,9 +15,9 @@ let insertarmensaje = async (gpn, msg, fecha) => {
 };
 let obtenermensajes = async (gpn) => {
   try {
-    console.log(`SELECT [gpn],[fecha],[mensaje] FROM [dbo].[CHAT] where gpn = '${gpn}'`);
+    console.log(`SELECT [gpn],[fecha],[mensaje],[usuario] FROM [dbo].[CHAT] where gpn = '${gpn}'`);
     let data=await ejecutarqery(
-      `SELECT [gpn],[fecha],[mensaje] FROM [dbo].[CHAT] where gpn = '${gpn}'`
+      `SELECT [gpn],[fecha],[mensaje],[usuario] FROM [dbo].[CHAT] where gpn = '${gpn}'`
     );
       console.log(data[0]);
     return data[0];
