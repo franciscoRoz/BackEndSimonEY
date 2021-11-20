@@ -13,9 +13,9 @@ router.post("/enviarmensaje", express.json(), async function (req, res) {
 });
 
 router.post("/respaldarmensaje", express.json(), async function (req, res) {
-  let { msg, gpn, fecha,usuario } = req.body[0];
+  let { mensaje, gpn, fecha,usuario } = req.body[0];
 
-  let respuestainsertdato = await insertarmensaje(gpn, msg, fecha,usuario);
+  let respuestainsertdato = await insertarmensaje(gpn, mensaje, fecha,usuario);
 
   respuestainsertdato === ""
     ? res.send("ok").status(200)
