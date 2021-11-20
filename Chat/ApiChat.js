@@ -26,7 +26,7 @@ router.get("/obtenerhistorico/:gpn", express.json(), async function (req, res) {
   let { gpn } = req.params;
 
   let Mensajeshistoricos = await obtenermensajes(gpn);
-
+  console.log(Mensajeshistoricos);
   Mensajeshistoricos !== ""
     ? res.send(Mensajeshistoricos).status(200)
     : res.send({}).status(400);

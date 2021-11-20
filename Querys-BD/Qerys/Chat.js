@@ -18,7 +18,7 @@ let obtenermensajes = async (gpn) => {
     let data=await ejecutarqery(
       `SELECT [gpn],[fecha],[mensaje] FROM [dbo].[CHAT] where gpn = '${gpn}'`
     );
-
+      console.log(data[0]);
     return data[0];
   } catch {
     console.log("error al obtener los mensajes");
