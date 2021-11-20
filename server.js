@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-app.use("/handlemsg", require("./DialogFlow/Funciones"));
+app.use("/handlemsg", require("./Chat/ApiChat"));
 app.use("/user", require("./Usuario/ApiUsuario"));
 
 app.get("/", (req, res) => {

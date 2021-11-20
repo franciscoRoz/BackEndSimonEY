@@ -10,7 +10,7 @@ const {
   activarusuario,
   recuperarclave,
   enviarcorreoactivacion,
-} = require("./Funciones");
+} = require("./FuncionesUsuario");
 
 
 
@@ -18,7 +18,8 @@ router.get("/info/:id", express.json(), async function (req, res) {
   let { id } = req.params;
 
   let { codigo, mensaje } = await getinfousuario(id);
-
+  
+  
   res.send(mensaje).status(codigo);
 });
 
