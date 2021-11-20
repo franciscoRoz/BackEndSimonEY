@@ -15,6 +15,7 @@ let insertarmensaje = async (gpn, msg, fecha) => {
 };
 let obtenermensajes = async (gpn) => {
   try {
+    console.log(`SELECT [gpn],[fecha],[mensaje] FROM [dbo].[CHAT] where gpn = '${gpn}'`);
     let data=await ejecutarqery(
       `SELECT [gpn],[fecha],[mensaje] FROM [dbo].[CHAT] where gpn = '${gpn}'`
     );
