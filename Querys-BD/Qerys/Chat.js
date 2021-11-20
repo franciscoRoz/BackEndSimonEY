@@ -1,11 +1,11 @@
 const { ejecutarqery } = require("../dboperaciones");
 let insertarmensaje = async (gpn, msg, fecha,usuario) => {
   try {
-      console.log(  `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje],[usuario])
-      VALUES('${gpn}','${fecha}','${msg},${usuario}')`);
+      console.log(   `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje],[usuario])
+      VALUES('${gpn}','${fecha}','${msg}','${usuario}')`);
     await ejecutarqery(
       `INSERT INTO [dbo].[CHAT] ([gpn],[fecha],[mensaje],[usuario])
-        VALUES('${gpn}','${fecha}','${msg},${usuario}')`
+        VALUES('${gpn}','${fecha}','${msg}','${usuario}')`
     );
 
     return "";
