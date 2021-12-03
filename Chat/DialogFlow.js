@@ -16,13 +16,10 @@ const sessionClient = new dialogflow.SessionsClient({
  * @param {string} projectId The project to be used
  */
 async function sendToDialogFlow(msg, session, source, params) {
-  
-
   try {
     const sessionPath = sessionClient.sessionPath(
       config.GOOGLE_PROJECT_ID,
       session
-
     );
 
     const request = {
@@ -39,29 +36,29 @@ async function sendToDialogFlow(msg, session, source, params) {
         },
       },
     };
-
+    let defaultResponses;
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     console.log("INTENT EMPAREJADO: ", result.intent.displayName);
-    let defaultResponses = [];
-    if (result.action !== "input.unknown") {
-      result.fulfillmentMessages.forEach((element) => {
-        if (element.platform === source) {
-          defaultResponses.push(element);
-        }
-      });
-    }
-    if (defaultResponses.length === 0) {
-      result.fulfillmentMessages.forEach((element) => {
-        if (element.platform === "PLATFORM_UNSPECIFIED") {
-          defaultResponses.push(element);
-        }
-      });
-    }
-    result.fulfillmentMessages = defaultResponses;
+    let parametro = Object.keys(result.parameters.fields)[0];
+    let valorparametro =result.parameters.fields[`${parametro}`];
 
-    return result;
-    // console.log("se enviara el resultado: ", result);
+  
+    if (valorparametro === undefined) {
+      defaultResponses = {
+        text: result.fulfillmentText,
+        parametro: "",
+        valorparametro: "",
+      };
+    } else {
+      defaultResponses = {
+        text: result.fulfillmentText,
+        parametro,
+        valorparametro: valorparametro.stringValue,
+      };
+    }
+
+    return defaultResponses;
   } catch (e) {
     console.log("error");
     console.log(e);

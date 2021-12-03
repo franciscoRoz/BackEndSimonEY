@@ -3,13 +3,22 @@ const express = require("express");
 const { insertarmensaje, obtenermensajes } = require("../Querys-BD/Qerys/Chat");
 const router = express.Router();
 router.post("/enviarmensaje", express.json(), async function (req, res) {
-  let { msg, gpn, source } = req.body[0];
+  let { msg, gpn, source ,fecha} = req.body[0];
+  let respuestainsertdato = await insertarmensaje(gpn, msg, fecha,source);
 
-  let resDF = await sendToDialogFlow(msg, gpn, source, "");
+  respuestainsertdato === ""
+    ? null
+    : res.send("No se pudo enviar tu mensaje, intentalo mas tarde").status(400);
 
-  const { text } = resDF.fulfillmentMessages[0].text;
+  let respuesta_DialogFlow = await sendToDialogFlow(msg, gpn, source, "");
+  
+  respuestainsertdato = await insertarmensaje(gpn, respuesta_DialogFlow.text, fecha,"robot");
 
-  res.send(text).status(200);
+  respuestainsertdato === ""
+  ? null
+  : res.send("No se pudo enviar tu mensaje, intentalo mas tarde").status(400);
+
+  res.send(respuesta_DialogFlow).status(200);
 });
 
 router.post("/respaldarmensaje", express.json(), async function (req, res) {
