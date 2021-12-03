@@ -1,4 +1,4 @@
-export const now = ()=>{
+const Now = ()=>{
     var date = new Date().getDate(); //dia actual
     var month = new Date().getMonth() + 1; //mes actual
     var year = new Date().getFullYear(); //año actual
@@ -11,3 +11,6 @@ export const now = ()=>{
       + ' ' + hours + ':' + min + ':' + sec+ ':' + mils
       
 }
+
+
+module.exports = { Now };
