@@ -1,6 +1,7 @@
 const { sendToDialogFlow } = require("./DialogFlow");
 const express = require("express");
 const { insertarmensaje, obtenermensajes } = require("../Querys-BD/Qerys/Chat");
+const { now } = require("../Utility/FechaLocal.JS");
 const router = express.Router();
 router.post("/enviarmensaje", express.json(), async function (req, res) {
   let { msg, gpn, source ,fecha} = req.body[0];
@@ -12,7 +13,7 @@ router.post("/enviarmensaje", express.json(), async function (req, res) {
 
   let respuesta_DialogFlow = await sendToDialogFlow(msg, gpn, source, "");
   
-  respuestainsertdato = await insertarmensaje(gpn, respuesta_DialogFlow.text, fecha,"robot");
+  respuestainsertdato = await insertarmensaje(gpn, respuesta_DialogFlow.text, now(),"robot");
 
   respuestainsertdato === ""
   ? null
