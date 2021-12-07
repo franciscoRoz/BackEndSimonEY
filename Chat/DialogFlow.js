@@ -1,5 +1,6 @@
 const dialogflow = require("dialogflow");
 const config = require("../Config/config");
+const { ValidacionSolicitudDF } = require("./ValidacionMensaje");
 
 const credentials = {
   client_email: config.GOOGLE_CLIENT_EMAIL,
@@ -15,7 +16,7 @@ const sessionClient = new dialogflow.SessionsClient({
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
  */
-async function sendToDialogFlow(msg, session, source, params) {
+async function sendToDialogFlow(msg, session, source, params,gtime,expense) {
   try {
     const sessionPath = sessionClient.sessionPath(
       config.GOOGLE_PROJECT_ID,
@@ -32,7 +33,7 @@ async function sendToDialogFlow(msg, session, source, params) {
       },
       queryParams: {
         payload: {
-          data: params,
+          data: params, 
         },
       },
     };
@@ -40,19 +41,22 @@ async function sendToDialogFlow(msg, session, source, params) {
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     console.log("INTENT EMPAREJADO: ", result.intent.displayName);
+
+    let text = ValidacionSolicitudDF(result.fulfillmentText,"administrador",gtime,expense)
+
     let parametro = Object.keys(result.parameters.fields)[0];
     let valorparametro =result.parameters.fields[`${parametro}`];
-
+    
   
     if (valorparametro === undefined) {
       defaultResponses = {
-        text: result.fulfillmentText,
+        text ,
         parametro: "",
         valorparametro: "",
       };
     } else {
       defaultResponses = {
-        text: result.fulfillmentText,
+        text,
         parametro,
         valorparametro: valorparametro.stringValue,
       };

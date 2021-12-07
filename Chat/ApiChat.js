@@ -4,14 +4,14 @@ const { insertarmensaje, obtenermensajes } = require("../Querys-BD/Qerys/Chat");
 const { Now } = require("../Utility/FechaLocal.js");
 const router = express.Router();
 router.post("/enviarmensaje", express.json(), async function (req, res) {
-  let { msg, gpn, source ,fecha} = req.body[0];
+  let { msg, gpn, source ,fecha,expense,gtime} = req.body[0];
   let respuestainsertdato = await insertarmensaje(gpn, msg, fecha,source);
 
   respuestainsertdato === ""
     ? null
     : res.send("No se pudo enviar tu mensaje, intentalo mas tarde").status(400);
 
-  let respuesta_DialogFlow = await sendToDialogFlow(msg, gpn, source, "");
+  let respuesta_DialogFlow = await sendToDialogFlow(msg, gpn, source, "",gtime,expense);
   
   respuestainsertdato = await insertarmensaje(gpn, respuesta_DialogFlow.text, Now(),"robot");
 
