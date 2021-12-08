@@ -16,7 +16,7 @@ router.post("/enviarmensaje", express.json(), async function (req, res) {
   respuestainsertdato = await insertarmensaje(gpn, respuesta_DialogFlow.text, Now(),"robot");
 
   respuestainsertdato === ""
-  ? null
+  ? null 
   : res.send("No se pudo enviar tu mensaje, intentalo mas tarde").status(400);
 
   res.send(respuesta_DialogFlow).status(200);

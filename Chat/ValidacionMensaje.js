@@ -41,7 +41,8 @@ switch (text) {
         Monto:${Montodevolucion}
         Descripcion:${Descripciondevolucion}
          `
-    
+    case "":
+    case "":
     
         default:
         break;
