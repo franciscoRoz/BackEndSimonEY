@@ -1,5 +1,11 @@
-let ValidacionSolicitudDF = (text,permiso,gtime,expense) =>{
-    
+const { insertsolicitudcargalaboral, obtenerid, insertpeticionrpaCL } = require("../Querys-BD/Qerys/ChatQeryFuncion/CargaLaboral")
+
+let ValidacionSolicitudDF = async (text,permiso,gtime,expense) =>{
+
+let {Engagement,Fecha,Lunes,Martes,Miercoles,Jueves,Viernes} = gtime   
+let {Descripciondevolucion,Engagementdevolucion,Montodevolucion} = expense
+
+
 switch (text) {
     case "Hola ,Soy simón tu asistente en EY las acciones disponibles son":
         if(permiso === "administrador"){
@@ -21,7 +27,7 @@ switch (text) {
      
         }
     case "confirmardatosgtime":
-        let {Engagement,Fecha,Lunes,Martes,Miercoles,Jueves,Viernes} = gtime
+        
         return `Los datos que se registraran en tu gtime son los siguientes:
         Engagement:${Engagement}
         Fecha:${Fecha}
@@ -30,19 +36,17 @@ switch (text) {
         Martes:${Martes}
         Miercoles:${Miercoles}
         Jueves:${Jueves}
-        Viernes:${Viernes}
+        Viernes:${text}
 
         porfavor confirma tu solicitud escribiendo SI o NO comorespuesta
         `
     case "Validardatosexpense":
-        let {Descripciondevolucion,Engagementdevolucion,Montodevolucion} = expense
+        
         return`los datos que se registraran en un expense son los siguientes:
         Engagement:${Engagementdevolucion}
         Monto:${Montodevolucion}
-        Descripcion:${Descripciondevolucion}
+        Descripcion:${text}
          `
-    case "":
-    case "":
     
         default:
         break;

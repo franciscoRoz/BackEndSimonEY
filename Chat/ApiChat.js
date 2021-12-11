@@ -1,6 +1,6 @@
 const { sendToDialogFlow } = require("./DialogFlow");
 const express = require("express");
-const { insertarmensaje, obtenermensajes } = require("../Querys-BD/Qerys/Chat");
+const { insertarmensaje, obtenermensajes } = require("../Querys-BD/Qerys/ChatQeryFuncion/Chat");
 const { Now } = require("../Utility/FechaLocal.js");
 const router = express.Router();
 router.post("/enviarmensaje", express.json(), async function (req, res) {
