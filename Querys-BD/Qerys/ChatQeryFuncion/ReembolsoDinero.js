@@ -1,19 +1,13 @@
+const { Now } = require("../../../Utility/FechaLocal");
 const { ejecutarqery } = require("../../dboperaciones");
-let insertreembolsodinero = async (gpn,expense,idsemana) => {
+let insertreembolsodinero = async (expense,gpn) => {
     try {
-    let {Engagement,Fecha,Lunes,Martes,Miercoles,Jueves,Viernes} = gtime 
+  let { Descripciondevolucion, Engagementdevolucion, Montodevolucion,imagen1,imagen2 } =expense;
+    
    
         let IdpeticionRPA = await ejecutarqery(`declare @parametro1 int,@parametro2 varchar(30)
-        exec Insertar_Solicitud_Carga_Laboral 
-        '${gpn}'
-        ,'${Engagement}'
-        ,'${Fecha}'
-        ,${Lunes}
-        ,${Martes}
-        ,${Miercoles}
-        ,${Jueves}
-        ,${Viernes}
-        ,@parametro1 output,@parametro2 output`)
+        exec Insertar_Solicitud_Reembolso 
+        ${Montodevolucion},'${Engagementdevolucion}','${Descripciondevolucion}','${Now()}','${gpn}','${imagen1}','${imagen2}',@parametro1 output,@parametro2 output`)
         
       return IdpeticionRPA[0][0];
     } catch(e) {
