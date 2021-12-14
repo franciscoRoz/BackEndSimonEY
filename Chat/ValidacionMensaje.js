@@ -8,15 +8,17 @@ let {Descripciondevolucion,Engagementdevolucion,Montodevolucion} = expense
 
 switch (text) {
     case "Hola ,Soy simón tu asistente en EY las acciones disponibles son":
+        console.log(permiso);
         if(permiso === "administrador"){
-            return`${text}:
+        
+        return(`${text}:
         1)realizar registro GT&E 
         2)Modificar registro GT&E
         3)Eliminar registro GT&E
         4)Realizar Expense
         5)Consultar una solicitud de expense
         7)Asignar perfil administrador
-        8)Obtener numero de solicitudes realizadas hoy`
+        8)Obtener numero de solicitudes realizadas hoy`)
         }else{
             return `${text}:
         1)realizar registro GT&E 
