@@ -17,7 +17,7 @@ const sessionClient = new dialogflow.SessionsClient({
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
  */
-async function sendToDialogFlow(msg, session, source, params,gtime,expense,gpn) {
+async function sendToDialogFlow(msg, session, source, params,gtime,expense) {
   try {
     const sessionPath = sessionClient.sessionPath(
       config.GOOGLE_PROJECT_ID,
