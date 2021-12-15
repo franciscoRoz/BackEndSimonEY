@@ -51,7 +51,8 @@ switch (text) {
          `
     
         default:
-        break;
+            return text
+       
 }
 
 
