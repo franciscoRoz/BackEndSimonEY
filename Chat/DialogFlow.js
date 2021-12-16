@@ -43,10 +43,10 @@ async function sendToDialogFlow(permisos,msg, session, source, params,gtime,expe
     const result = responses[0].queryResult;
     console.log("INTENT EMPAREJADO: ", result.intent.displayName);
     console.log(result.fulfillmentText);
-    let text = await ValidacionSolicitudDF(result.fulfillmentText,permisos,gtime,expense)
-    console.log(text);
+    let text = await ValidacionSolicitudDF(result.fulfillmentText,permisos,gtime,expense,msg)
+ 
     text =await agregarsolicitud(text,session,gtime,expense);
-    console.log(text);
+ 
     let parametro = Object.keys(result.parameters.fields)[0];
     let valorparametro =result.parameters.fields[`${parametro}`];
     

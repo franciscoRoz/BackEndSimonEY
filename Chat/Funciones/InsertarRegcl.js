@@ -1,4 +1,5 @@
 const { insertsolicitudcargalaboral } = require("../../Querys-BD/Qerys/ChatQeryFuncion/CargaLaboral");
+const { ValidadorResSql } = require("./ValidadorRespuestaSQL");
 
 let InsertarRegcl = async(gpn,gtime)=>{
     let { id, error } = await insertsolicitudcargalaboral(gpn, gtime);

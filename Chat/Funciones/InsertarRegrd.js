@@ -1,4 +1,5 @@
 const { insertreembolsodinero } = require("../../Querys-BD/Qerys/ChatQeryFuncion/ReembolsoDinero");
+const { ValidadorResSql } = require("./ValidadorRespuestaSQL");
 
 let insertarRegrd = async(expense, gpn) =>{
     let { id, error } = await insertreembolsodinero(expense, gpn);

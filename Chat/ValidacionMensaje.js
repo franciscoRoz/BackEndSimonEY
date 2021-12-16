@@ -1,6 +1,6 @@
 const { insertsolicitudcargalaboral, obtenerid, insertpeticionrpaCL } = require("../Querys-BD/Qerys/ChatQeryFuncion/CargaLaboral")
 
-let ValidacionSolicitudDF = async (text,permiso,gtime,expense) =>{
+let ValidacionSolicitudDF = async (text,permiso,gtime,expense,msg) =>{
 
 let {Engagement,Fecha,Lunes,Martes,Miercoles,Jueves,Viernes} = gtime   
 let {Descripciondevolucion,Engagementdevolucion,Montodevolucion} = expense
@@ -17,8 +17,8 @@ switch (text) {
         3)Eliminar registro GT&E
         4)Realizar Expense
         5)Consultar una solicitud de expense
-        7)Asignar perfil administrador
-        8)Obtener numero de solicitudes realizadas hoy`)
+        6)Asignar perfil administrador
+        7)Obtener numero de solicitudes realizadas hoy`)
         }else{
             return `${text}:
         1)realizar registro GT&E 
@@ -38,7 +38,7 @@ switch (text) {
         Martes:${Martes}
         Miercoles:${Miercoles}
         Jueves:${Jueves}
-        Viernes:${text}
+        Viernes:${msg}
 
         porfavor confirma tu solicitud escribiendo SI o NO comorespuesta
         `
@@ -47,7 +47,7 @@ switch (text) {
         return`los datos que se registraran en un expense son los siguientes:
         Engagement:${Engagementdevolucion}
         Monto:${Montodevolucion}
-        Descripcion:${text}
+        Descripcion:${msg}
          `
     
         default:
