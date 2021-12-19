@@ -1,4 +1,5 @@
 const { eliminarregistro } = require("../../Querys-BD/Qerys/ChatQeryFuncion/CargaLaboral");
+const { ValidadorResSql } = require("./ValidadorRespuestaSQL");
 
 let EliminarRegcl = async(gtime,gpn)=>{
     let { id, error } = await eliminarregistro(gtime,gpn);

@@ -45,27 +45,29 @@ let actualizarcargalaboral = async (gpn, gtime, id) => {
     );
 
     return IdpeticionRPA[0][0];
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
-let eliminarregistro = async ({Fecha},gpn)=>{
+let eliminarregistro = async ({ Fecha }, gpn) => {
   try {
     let IdpeticionRPA = await ejecutarqery(
       `declare @parametro1 int,@parametro2 varchar(30)
-        exec Eliminar_Solicitud_Carga_Laboral 
-        ,'${Fecha}'
-        ,'${gpn}'
-        ,@parametro1 output,@parametro2 output`
+      exec Eliminar_Solicitud_Carga_Laboral 
+      '${gpn}'
+      ,'${Fecha}'
+      ,@parametro1 output,@parametro2 output`
     );
 
+     console.log(IdpeticionRPA[0][0]);
     return IdpeticionRPA[0][0];
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 let copiaregistrocargalaboral = async (gpn, id) => {
   try {
-
     let IdpeticionRPA = await ejecutarqery(
       `declare @parametro1 int,@parametro2 varchar(30)
         exec Copiar_Solicitud_Carga_Laboral 
@@ -96,10 +98,23 @@ let obtenerid = async (idsemana, gpn) => {
   }
 };
 
+let obtenerncasos = async (fecha) => {
+  try {
+    let idsolicitud = await ejecutarqery(
+      `exec Obtener_Solicitudes_Diarias '${fecha}'`
+    );
+
+    return idsolicitud[0][0];
+  } catch {
+    console.log("error al obtener el numero de casos");
+  }
+};
+
 module.exports = {
   insertsolicitudcargalaboral,
   obtenerid,
   actualizarcargalaboral,
   copiaregistrocargalaboral,
-  eliminarregistro
+  eliminarregistro,
+  obtenerncasos,
 };

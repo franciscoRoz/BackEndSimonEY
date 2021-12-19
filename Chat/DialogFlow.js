@@ -17,7 +17,7 @@ const sessionClient = new dialogflow.SessionsClient({
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
  */
-async function sendToDialogFlow(permisos,msg, session, source, params,gtime,expense) {
+async function sendToDialogFlow(permisos,msg, session, source, params,gtime,expense,perfiladm,idsolicitud) {
   try {
     const sessionPath = sessionClient.sessionPath(
       config.GOOGLE_PROJECT_ID,
@@ -42,10 +42,10 @@ async function sendToDialogFlow(permisos,msg, session, source, params,gtime,expe
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     console.log("INTENT EMPAREJADO: ", result.intent.displayName);
-    console.log(result.fulfillmentText);
+
     let text = await ValidacionSolicitudDF(result.fulfillmentText,permisos,gtime,expense,msg)
  
-    text =await agregarsolicitud(text,session,gtime,expense);
+    text =await agregarsolicitud(text,session,gtime,expense,permisos,perfiladm,idsolicitud);
  
     let parametro = Object.keys(result.parameters.fields)[0];
     let valorparametro =result.parameters.fields[`${parametro}`];

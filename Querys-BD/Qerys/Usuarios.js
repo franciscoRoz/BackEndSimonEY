@@ -152,6 +152,31 @@ let evaluarespuesta = (res) => {
   }
 };
 
+let AsignarPerfil = async (gpnasignar,gpn,fecha)=>{
+  try {
+    let res = await ejecutarqery(`
+    declare @parametro1 int,@parametro2 varchar(30)
+    exec Asignar_Perfil_Administrador 
+    '${gpnasignar}'
+    ,'${fecha}'
+    ,'${gpn}',@parametro1 output,@parametro2 output
+    `);
+    console.log(`
+    declare @parametro1 int,@parametro2 varchar(30)
+    exec Asignar_Perfil_Administrador 
+    '${gpnasignar}'
+    ,'${fecha}'
+    ,'${gpn}',@parametro1 output,@parametro2 output
+    `);
+    return evaluarespuesta(res[0][0]);
+    
+  } catch {
+    console.log(
+      `error al ejecutar la actualizacion de clave del usuario: ${email}`
+    );
+  }
+}
+
 module.exports = {
   infousuario,
   validarusuario,
@@ -161,5 +186,6 @@ module.exports = {
   actualizarclave,
   actualizarestadouser,
   obtenercorreo,
-  actualizarclaverecuperada
+  actualizarclaverecuperada,
+  AsignarPerfil
 };
