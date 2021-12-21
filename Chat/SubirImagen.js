@@ -29,7 +29,7 @@ router.post("/subir", async function (req, res) {
   if(!extensionespermitidas.includes(extension)){
       res.status(400).send('extension no valida para ser ejecutada')
   }
-  let nombrearchivo =`${gpn}_${Now().replaceAll(":","-").replaceAll("-","_").replaceAll(' ','')}.${extension}`
+  let nombrearchivo =`${gpn}_${Now()}.${extension}`
 
 
 
