@@ -34,10 +34,14 @@ router.post("/subir", async function (req, res) {
 
 
    uploadPath = path.join( __dirname , '../ImagenesSubidas/' , nombrearchivo);
-
-  const resp =await cloudinary.uploader.upload(tempFilePath);
+  try {
+    const resp =await cloudinary.uploader.upload(tempFilePath);
     console.log(resp);
     res.send(resp.url)
+  } catch (error) {
+    console.log(error); 
+  }
+  
 });
 
 router.get("/all", async function (req, res) {
