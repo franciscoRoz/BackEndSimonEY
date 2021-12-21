@@ -13,6 +13,9 @@ router.post("/subir", async function (req, res) {
     let uploadPath;
     console.log(req.files);
     console.log(req.body);
+    console.log(Object.keys(req.files).length === 0);
+    console.log('validacion');
+    console.log(!req.files || Object.keys(req.files).length === 0 || !req.files.imagen);
 
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.imagen) {
     res.status(400).send('No existen archivos');
