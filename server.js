@@ -1,8 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const fileUpload = require('express-fileupload')
 
 const port = process.env.PORT || 3000;
+
+
 
 // for parsing json
 app.use(
@@ -18,9 +21,24 @@ app.use(
   })
 );
 
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}));
+
+
+
+
+
+
+
+
+
+
+
 app.use("/handlemsg", require("./Chat/ApiChat"));
 app.use("/user", require("./Usuario/ApiUsuario"));
-
+app.use("/imagenes", require("./Chat/SubirImagen"));
 app.get("/", (req, res) => {
   return res.send("Chatbot Funcionando!!");
 });
