@@ -11,8 +11,9 @@ cloudinary.config(CLOUDINARY_URL);
 router.post("/subir", async function (req, res) {
     let sampleFile;
     let uploadPath;
-    console.log(req);
-    
+    console.log(req.files);
+    console.log(req.body);
+
   if (!req.files || Object.keys(req.files).length === 0 || !req.files.imagen) {
     res.status(400).send('No existen archivos');
     return;
